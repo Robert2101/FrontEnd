@@ -201,3 +201,41 @@
     background: gray;
     cursor: not-allowed;
 }
+/* Align question text to the left */
+.question {
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    background: none; /* Remove background */
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+/* Options styling */
+.options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align options to the left */
+    gap: 10px;
+}
+
+/* Buttons without background and text centered */
+.options button {
+    width: auto; /* Fit button width to content */
+    min-width: 200px; /* Maintain a good width */
+    padding: 10px 15px;
+    border: 2px solid #007bff; /* Add border instead of background */
+    background: none; /* Remove background */
+    color: #007bff; /* Set text color */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    text-align: center; /* Center text */
+}
+
+.options button:hover {
+    background: #007bff;
+    color: white;
+}

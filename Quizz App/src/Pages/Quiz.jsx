@@ -1,8 +1,9 @@
 import "./css/Quiz.css";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import quizData from "../questions"; // Importing local questions
+import quizData from "../questions";
 import QuestionList from "../Components/QuestionList.jsx";
+import QuizResultChart from "../Components/QuizResultChart.jsx"; // Import Pie Chart
 
 const Quiz = () => {
     const { category } = useParams();
@@ -12,7 +13,7 @@ const Quiz = () => {
     const [timer, setTimer] = useState(null);
     const [timeLeft, setTimeLeft] = useState(0);
     const [quizStarted, setQuizStarted] = useState(false);
-    const [selectedTime, setSelectedTime] = useState(300); // Default 5 min
+    const [selectedTime, setSelectedTime] = useState(300);
 
     useEffect(() => {
         setQuestions(quizData[category] || []);
@@ -28,8 +29,8 @@ const Quiz = () => {
 
     const handleSubmit = () => {
         setShowResult(true);
-        setQuizStarted(false); // Hide the quiz UI
-        if (timer) clearInterval(timer); // Stop the timer on submit
+        setQuizStarted(false);
+        if (timer) clearInterval(timer);
     };
 
     const startQuiz = () => {
@@ -38,12 +39,11 @@ const Quiz = () => {
         setSelectedAnswers({});
         setTimeLeft(selectedTime);
 
-        // Start countdown
         const countdown = setInterval(() => {
             setTimeLeft(prev => {
                 if (prev <= 1) {
                     clearInterval(countdown);
-                    handleSubmit(); // Auto-submit when time runs out
+                    handleSubmit();
                     return 0;
                 }
                 return prev - 1;
@@ -59,7 +59,6 @@ const Quiz = () => {
             <div className="quiz-container">
                 <h2>{category?.toUpperCase()} Quiz</h2>
 
-                {/* Timer Selection - Only Visible Before Quiz Starts */}
                 {!quizStarted && !showResult && (
                     <div className="timer-selection">
                         <label>Select Timer Duration:</label>
@@ -73,14 +72,12 @@ const Quiz = () => {
                     </div>
                 )}
 
-                {/* Timer Display */}
                 {quizStarted && !showResult && (
                     <div className="timer-display">
                         <h3>Time Left: {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</h3>
                     </div>
                 )}
 
-                {/* Quiz Questions */}
                 {quizStarted && !showResult && (
                     <>
                         <div className="progress-bar-container">
@@ -95,10 +92,10 @@ const Quiz = () => {
                     </>
                 )}
 
-                {/* Quiz Result */}
                 {showResult && (
                     <div className="result">
                         <h3>Your Score: {score} / {questions.length}</h3>
+                        <QuizResultChart score={score} total={questions.length} /> {/* Added Pie Chart */}
                     </div>
                 )}
             </div>
