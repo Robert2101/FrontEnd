@@ -151,3 +151,53 @@
     background-color: #4caf50;
     transition: width 0.3s ease-in-out;
 }
+.timer-selection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.timer-selection label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.timer-selection select {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.timer-selection select:focus {
+    outline: none;
+    border-color: #0056b3;
+    background: #e8f0fe;
+}
+
+.start-btn {
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: #007BFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.start-btn:hover {
+    background: #0056b3;
+}
+
+.start-btn:disabled {
+    background: gray;
+    cursor: not-allowed;
+}
