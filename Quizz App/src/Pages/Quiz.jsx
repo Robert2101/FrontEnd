@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import quizData from "../questions";
 import QuestionList from "../Components/QuestionList.jsx";
-import QuizResultChart from "../Components/QuizResultChart.jsx"; // Import Pie Chart
+import QuizResultChart from "../Components/QuizResultChart.jsx"; 
 
 const Quiz = () => {
     const { category } = useParams();
@@ -31,6 +31,22 @@ const Quiz = () => {
         setShowResult(true);
         setQuizStarted(false);
         if (timer) clearInterval(timer);
+    
+
+        const attempted = Object.keys(selectedAnswers).length;
+        const progressPercentage = (attempted / questions.length) * 100;
+    
+
+        const history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+        const newEntry = {
+            category,
+            score,
+            total: questions.length,
+            progress: progressPercentage.toFixed(2), // Store as percentage
+            date: new Date().toLocaleString()
+        };
+        
+        localStorage.setItem("quizHistory", JSON.stringify([...history, newEntry]));
     };
 
     const startQuiz = () => {

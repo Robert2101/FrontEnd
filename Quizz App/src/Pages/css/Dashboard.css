@@ -1,93 +1,244 @@
-/* Luxurious Dashboard Design with Glassmorphism */
 .dashboard-container {
     text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    padding: 80px 30px;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     min-height: 100vh;
     color: white;
     font-family: "Poppins", sans-serif;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Title */
+/* Animated background elements */
+.dashboard-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    animation: float 15s infinite linear;
+    z-index: 0;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(-5%, 5%) rotate(5deg); }
+    50% { transform: translate(-10%, 0) rotate(0deg); }
+    75% { transform: translate(-5%, -5%) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Title with gradient text */
 .dashboard-title {
-    font-size: 50px;
-    font-weight: 700;
-    margin-bottom: 15px;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: 1.5px;
+    background: linear-gradient(90deg, #ffffff, #c9d6ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Subtitle with subtle animation */
+.dashboard-subtitle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.85);
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Category Cards Grid with staggered animation */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced Glassmorphism Effect */
+.category-card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 35px 25px;
+    border-radius: 20px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: cardEntry 0.6s forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card:nth-child(1) { animation-delay: 0.1s; }
+.category-card:nth-child(2) { animation-delay: 0.2s; }
+.category-card:nth-child(3) { animation-delay: 0.3s; }
+.category-card:nth-child(4) { animation-delay: 0.4s; }
+.category-card:nth-child(5) { animation-delay: 0.5s; }
+.category-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes cardEntry {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card Hover Effects with glow */
+.category-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 45px rgba(255, 255, 255, 0.15),
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Category Titles with subtle shine */
+.category-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.category-card h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.category-card:hover h2::after {
+    width: 80px;
+    background: white;
+}
+
+/* Category Descriptions with improved readability */
+.category-card p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Unique Colors for Each Category with gradient */
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.c::before { background: linear-gradient(to bottom, #ffcc00, #ff9500); }
+.cpp::before { background: linear-gradient(to bottom, #ff6b6b, #ff3838); }
+.python::before { background: linear-gradient(to bottom, #48dbfb, #0abde3); }
+.dsa::before { background: linear-gradient(to bottom, #1dd1a1, #10ac84); }
+.html::before { background: linear-gradient(to bottom, #ff9f43, #ff7f00); }
+.sql::before { background: linear-gradient(to bottom, #8e44ad, #6c3483); }
+
+.category-card:hover::before {
+    width: 8px;
+}
+
+/* Profile Button with 3D effect */
+.profile-btn {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff9f43 0%, #ff6b6b 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    z-index: 10;
+    text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* Subtitle */
-.dashboard-subtitle {
-    font-size: 22px;
-    font-weight: 300;
-    margin-bottom: 40px;
-    color: rgba(255, 255, 255, 0.8);
+.profile-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff9f43 100%);
+    box-shadow: 0 8px 25px rgba(255, 105, 107, 0.4);
 }
 
-/* Category Cards Grid */
-.categories {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    justify-content: center;
-    max-width: 1100px;
-    margin: 0 auto;
+.profile-btn:active {
+    transform: translateY(1px) scale(0.98);
 }
 
-/* Glassmorphism Effect */
-.category-card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 60px 20px;
+    }
+    
+    .dashboard-title {
+        font-size: 2.5rem;
+    }
+    
+    .dashboard-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .categories {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .profile-btn {
+        top: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
 }
 
-/* Card Hover Effects */
-.category-card:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
+/* Add a subtle particle effect overlay */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
 }
 
-/* Category Titles */
-.category-card h2 {
-    font-size: 24px;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-/* Category Descriptions */
-.category-card p {
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 300;
-}
-
-/* Unique Colors for Each Category */
-.c {
-    border-left: 5px solid #ffcc00;
-}
-
-.cpp {
-    border-left: 5px solid #ff6b6b;
-}
-
-.python {
-    border-left: 5px solid #48dbfb;
-}
-
-.dsa {
-    border-left: 5px solid #1dd1a1;
-}
-
-.html {
-    border-left: 5px solid #ff9f43;
-}
-
-.sql {
-    border-left: 5px solid #8e44ad;
-}
+/* Add this to your HTML: <div class="particles" id="particles-js"></div> */
+/* You'll need to initialize particles.js separately */

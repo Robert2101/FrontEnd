@@ -1,0 +1,116 @@
+.profile-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 25px;
+    text-align: center;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-family: "Poppins", sans-serif;
+    position: relative;
+}
+
+/* Profile Header */
+.profile-container h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #f8f9fa;
+}
+
+/* Profile List */
+.profile-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+/* Profile Items - Glassmorphic Cards */
+.profile-container li {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    margin: 12px 0;
+    padding: 14px 18px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Effects */
+.profile-container li:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Highlight Key Details */
+.profile-container li strong {
+    color: #ffdd57; /* Gold for highlighting */
+    font-weight: 600;
+}
+
+/* Profile Description */
+.profile-container p {
+    font-size: 18px;
+    opacity: 0.85;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Stylish Divider */
+.profile-divider {
+    height: 3px;
+    background: linear-gradient(90deg, rgba(255, 221, 87, 0.7), rgba(255, 87, 87, 0.7));
+    width: 50%;
+    margin: 15px auto;
+    border-radius: 5px;
+}
+
+/* Profile Edit Button */
+.profile-edit-btn {
+    margin-top: 20px;
+    padding: 12px 22px;
+    font-size: 16px;
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+}
+
+/* Hover & Active Effects */
+.profile-edit-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+}
+
+.profile-edit-btn:active {
+    transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        max-width: 90%;
+        padding: 20px;
+    }
+}
+/* Full-page dark background */
+body {
+    background-color: #1e1e2e; /* Dark blue solid color */ /* Dark gradient */
+    margin: 0;
+    padding: 0;
+    /* display: flex;
+    justify-content: center; */
+    align-items: center;
+    min-height: 100vh; /* Make it cover the entire screen */
+}
